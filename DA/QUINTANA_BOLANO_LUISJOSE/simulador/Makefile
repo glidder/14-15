@@ -20,7 +20,7 @@ DEF_LIB_BASE_NAME3 = DefenseStrategy3
 DEF_LIB_PATH4 = ../p4
 DEF_LIB_BASE_NAME4 = AttackStrategy
 EXE = simulador # target lib
-VIEWER = ../visor/bin/lin/asedio_player.x86
+VIEWER = ../visor/bin/lin/asedio_player.x86_64
 VIEWERFLAGS = # -logfile log.txt
 REPLAYFILE = replay.txt
  

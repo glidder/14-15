@@ -10,13 +10,13 @@ FILES_TO_PACK_P1 = ../p1/DefenseStrategy.cpp ../p1/*.tex ../p1/p1.pdf ../autor.t
 FILES_TO_PACK_P2 = ../p2/DefensesSelection.cpp ../p2/*.tex ../p2/p2.pdf ../autor.tex ../p2/Makefile ../p2/.conf
 FILES_TO_PACK_P3 = ../p3/DefenseStrategy.cpp ../p3/*.tex ../p3/p3.pdf ../autor.tex ../p3/Makefile ../p3/cronometro.h ../p3/.conf
 CC = g++ # C++ compiler
-CFLAGS = -fPIC -Wall -Wextra -O2 -g 
+CFLAGS = -fPIC -O2 # -Wall -Wextra -g 
 LDFLAGS = -shared # linking flags
 RM = rm -f # rm command
 TARGET_LIB = libDefenseStrategy3.so # target lib
 SIMPATH = ../simulador/
 EXE = $(SIMPATH)simulador
-VIEWER = ../visor/bin/lin/asedio_player.x86
+VIEWER = ../visor/bin/lin/asedio_player.x86_64
 VIEWERFLAGS = # -logfile log.txt
 REPLAYFILE = replay.txt
 

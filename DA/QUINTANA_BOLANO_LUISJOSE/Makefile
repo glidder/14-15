@@ -55,7 +55,7 @@ SOURCES_SIMULADOR = ../$(BASE_DIR)/simulador/Makefile ../$(BASE_DIR)/simulador/*
 
 SOURCES_VISOR = 
 
-SOURCES_OTHERS = $(FILES_TO_PACK_OTHERS) ../$(BASE_DIR)/update.sh ../$(BASE_DIR)/sendupdate.sh ../$(BASE_DIR)/competicion/p1/competicion.sh
+SOURCES_OTHERS = $(FILES_TO_PACK_OTHERS) ../$(BASE_DIR)/update.sh ../$(BASE_DIR)/sendupdate.sh ../$(BASE_DIR)/competicion/p1/competicion.sh ../$(BASE_DIR)/competicion/p1/resultados.xls
 
 SOURCES_P0 = $(FILES_TO_PACK_P0) ../$(BASE_DIR)/p0/guion-p0.tex
 
@@ -72,7 +72,7 @@ SOURCES_P4 = $(FILES_TO_PACK_P4) $(FILES_TO_PACK_P4_SOL) ../$(BASE_DIR)/p4/guion
 .PHONY: all
 all: p0 p1 p2 p3 p4 $(EXE)
 
-$(EXE): simulador/CodingManager.cpp simulador/ppm.cpp simulador/Defense.cpp simulador/SimpleRandomGenerator.cpp simulador/Game.cpp simulador/Unit.cpp simulador/Map.cpp simulador/Asedio.h simulador/ObjectsManager.h simulador/CodingManager.h simulador/ppm.h simulador/Defense.h simulador/SimpleRandomGenerator.h simulador/ezOptionParser.h  simulador/Unit.h simulador/Game.h simulador/Vector3.h simulador/Map.h
+$(EXE): simulador/CodingManager.cpp simulador/ppm.cpp simulador/Defense.cpp simulador/Game.cpp simulador/Unit.cpp simulador/Map.cpp simulador/Asedio.h simulador/ObjectsManager.h simulador/CodingManager.h simulador/ppm.h simulador/Defense.h simulador/ezOptionParser.h  simulador/Unit.h simulador/Game.h simulador/Vector3.h simulador/Map.h
 
 	cd simulador; make; cd ..
 

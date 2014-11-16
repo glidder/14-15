@@ -10,7 +10,8 @@
 
 using namespace Asedio;
 
-void DEF_LIB_EXPORTED selectDefenses(std::list<Defense*> defenses, unsigned int ases, std::list<int> &selectedIDs) {
+void DEF_LIB_EXPORTED selectDefenses(std::list<Defense*> defenses, unsigned int ases, std::list<int> &selectedIDs
+            , float mapWidth, float mapHeight, std::list<Object*> obstacles) {
 
     unsigned int cost = 0;
     std::list<Defense*>::iterator it = defenses.begin();

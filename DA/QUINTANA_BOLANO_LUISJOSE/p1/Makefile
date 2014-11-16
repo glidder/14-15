@@ -13,7 +13,7 @@ RM = rm -f # rm command
 TARGET_LIB = libDefenseStrategy.so # target lib
 SIMPATH = ../simulador/
 EXE = $(SIMPATH)simulador
-VIEWER = ../visor/bin/lin/asedio_player.x86
+VIEWER = ../visor/bin/lin/asedio_player.x86_64
 VIEWERFLAGS = # -logfile log.txt
 REPLAYFILE = replay.txt
 

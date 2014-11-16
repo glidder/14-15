@@ -1,0 +1,72 @@
+// ###### Config options ################
+
+#define PRINT_DEFENSE_STRATEGY 1    // generate map images
+
+// #######################################
+
+#define BUILDING_DEF_STRATEGY_LIB 1
+
+#include "../simulador/Asedio.h"
+#include "../simulador/Defense.h"
+
+#ifdef PRINT_DEFENSE_STRATEGY
+#include "ppm.h"
+#endif
+
+#ifdef CUSTOM_RAND_GENERATOR
+long SimpleRandomGenerator::a;
+#endif
+
+#include <math.h>
+
+using namespace Asedio;              
+
+//Function that calculates the euclidean distance between two cells
+float euclideanDistance (int x1, int x2, int y1, int y2){
+	return (sqrt(pow(x1-x2,2)+pow(y1-y2,2)));
+}
+
+//Function that determines the position of the defenses
+void DEF_LIB_EXPORTED placeDefenses(bool** freeCells, int nCellsWidth, int nCellsHeight, float mapWidth, float mapHeight
+              , std::list<Object*> obstacles, std::list<Defense*> defenses) {
+
+    float cellWidth = mapWidth / nCellsWidth;
+    float cellHeight = mapHeight / nCellsHeight; 
+	
+	//Cell values for the position of the main tower are calculated
+	//A higher value represents a better position.
+	float cellValue[nCellsHeight][nCellsWidth];
+	for (int x =0; x<nCellsHeight; ++x){
+		for (int y=0; y<nCellsWidth;++y){
+		}			
+	}
+	
+    int maxAttemps = 1000;
+    List<Defense*>::iterator currentDefense = defenses.begin();
+    while(currentDefense != defenses.end() && maxAttemps > 0) {
+
+        (*currentDefense)->position.x = ((int)(_RAND2(nCellsWidth))) * cellWidth + cellWidth * 0.5f;
+        (*currentDefense)->position.y = ((int)(_RAND2(nCellsHeight))) * cellHeight + cellHeight * 0.5f;
+        (*currentDefense)->position.z = 0; 
+        ++currentDefense;
+    }
+
+#ifdef PRINT_DEFENSE_STRATEGY
+
+    float** cellValues = new float* [nCellsHeight]; 
+    for(int i = 0; i < nCellsHeight; ++i) {
+       cellValues[i] = new float[nCellsWidth];
+       for(int j = 0; j < nCellsWidth; ++j) {
+           cellValues[i][j] = (int)(_RAND2(255));
+       }
+    }
+    dPrintMap("strategy.ppm", nCellsHeight, nCellsWidth, cellHeight, cellWidth, freeCells
+                         , cellValues, std::list<Defense*>(), true);
+
+    for(int i = 0; i < nCellsHeight ; ++i)
+        delete [] cellValues[i];
+	delete [] cellValues;
+	cellValues = NULL;
+
+#endif
+}
