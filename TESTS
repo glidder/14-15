@@ -1,0 +1,38 @@
+<INDEX SORTING>
+
+In the STL, std::max_element provides the iterator (which can be used to get index with std::distance, if you really want it).
+
+int main(int argc, char** argv) {
+  int A[4] = {0, 2, 3, 1};
+  const int N = sizeof(A) / sizeof(int);
+
+  cout << "Index of max element: "
+       << distance(A, max_element(A, A + N))
+       << endl;
+
+  return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+You could sort std::pair instead of just ints - first int is original data, second int is original index. Then supply a comparator that only sorts on the first int. Example:
+
+Your problem instance: v = [5 7 8]
+New problem instance: v_prime = [<5,0>, <8,1>, <7,2>]
+
+Sort the new problem instance using a comparator like:
+
+typedef std::pair<int,int> mypair;
+bool comparator ( const mypair& l, const mypair& r)
+   { return l.first < r.first; }
+// forgetting the syntax here but intent is clear enough
+
+The result of std::sort on v_prime, using that comparator, should be:
+
+v_prime = [<5,0>, <7,2>, <8,1>]
+
+You can peel out the indices by walking the vector, grabbing .second from each std::pair.
+
+
