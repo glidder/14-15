@@ -28,6 +28,18 @@ float euclideanDistance (float x1, float x2, float y1, float y2){
 	return (sqrt(pow(x1-x2,2)+pow(y1-y2,2)));
 }
 
+//Function that tests the feasibility for a tower position
+//It checks the potential collisions of the tower with the surrounding obstacles.
+bool feasibility (float cellHeight, float cellWidth, int x, int y, Defense* defense, std::list<Object*> obstacles){
+	for (List<Object*>::iterator currentObstacle 0 obstacles.begin(); currentObstacle != obstacles.end(); ++currentObstacle){
+		float objectDistance = euclideanDistance(x*cellHeight,(*curentObstacle)->position.x*cellHeight,y*cellWidth,(*currentObstacle)->position.y*cellWidth);
+		if(objectDistance < defense.radio+currentObstacle.radio){ //REAL SYNTAX???
+			return false;
+		}
+	}
+	return true;
+}
+
 //Function that determines the position of the defenses
 void DEF_LIB_EXPORTED placeDefenses(bool** freeCells, int nCellsWidth, int nCellsHeight, float mapWidth, float mapHeight
               , std::list<Object*> obstacles, std::list<Defense*> defenses) {
