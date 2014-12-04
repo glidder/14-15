@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pruebas Comite</title>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/wsinvocation.js"></script>
+</head>
+<body>
+	<input type="button" value="GET comite" onclick="getComite()" />
+	<h3 id="resSuccess"></h3>
+	<input type="button" value="GET miembro" onclick="getMiembro('guadalupe')"/>
+	<input type="button" value="POST miembro" onclick="agregarMiembro('nuevo','Nuevo','Apellidos','UCA','España')"/>
+	<input type="button" value="DELETE miembro" onclick="eliminarMiembro('nuevo')"/>
+	<input type="button" value="PUT miembro" onclick="modificarMiembro('nuevo','Nuevo','Apellidos','UCH','CHINA')"/>
+	<input type="button" value="GET nuevo miembro" onclick="getMiembro('nuevo')"/>
+</body>
+</html>
