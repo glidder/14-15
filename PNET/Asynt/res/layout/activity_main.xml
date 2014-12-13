@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="es.uca.asynt.MainActivity" >
+
+    <!-- -->
+    <ProgressBar
+		android:id="@+id/pbarProgreso"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dip"
+		android:layout_marginLeft="5dip"
+		android:layout_marginRight="5dip"
+		android:max="100" />
+    <Button
+		android:id="@+id/BtnIniciar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/iniciar"
+		android:layout_below="@id/pbarProgreso"
+		android:layout_alignParentRight="true" />
+    <Button
+		android:id="@+id/BtnCancelar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/cancelar"
+		android:layout_below="@id/pbarProgreso"
+		android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" 
+        android:layout_below="@id/BtnCancelar"
+		android:layout_alignParentLeft="true" />
+    <Button
+		android:id="@+id/BtnInvocar"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/invocar"
+		android:layout_below="@id/BtnCancelar"
+		android:layout_alignParentRight="true" />
+    <Button
+		android:id="@+id/BtnToastc"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/toastc"
+		android:layout_below="@id/BtnInvocar"
+		android:layout_alignParentRight="true" />
+    <Button
+		android:id="@+id/BtnToastl"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/toastl"
+		android:layout_below="@id/BtnInvocar"
+		android:layout_alignParentLeft="true" />
+    <Button
+		android:id="@+id/BtnToastp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/toastp"
+		android:layout_below="@id/BtnInvocar"
+		android:layout_toRightOf="@id/BtnToastl"/>
+    <Button
+		android:id="@+id/BtnNotifica"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/notifica"
+		android:layout_below="@id/BtnToastl"
+		android:layout_alignParentLeft="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Congreso</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_comite">Comité</string>
+    <string name="action_program">Programa</string>
+    <string name="action_dates">Fechas Importantes</string>
+    <string name="action_location">Localización</string>
+    <string name="title_activity_comite">Comité</string>
+    <string name="title_activity_program">Programa</string>
+    <string name="title_activity_dates">Fechas Importantes</string>
+    <string name="title_activity_location">Localización</string>
+
+</resources>

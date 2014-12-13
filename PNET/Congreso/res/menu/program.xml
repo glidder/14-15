@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="es.uca.congreso.ProgramActivity" >
+
+    <item 
+        android:id="@+id/MnuCom"
+		android:title="@string/action_comite"
+		android:icon="@drawable/com"
+		android:showAsAction="ifRoom|withText"> </item>
+	<item 
+	    android:id="@+id/MnuDat"
+		android:title="@string/action_dates"
+		android:icon="@drawable/dat"
+		android:showAsAction="ifRoom|withText"> </item>
+	<item 
+	    android:id="@+id/MnuLoc"
+		android:title="@string/action_location"
+		android:icon="@drawable/loc"
+		android:showAsAction="ifRoom|withText"> </item>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+
+</menu>
