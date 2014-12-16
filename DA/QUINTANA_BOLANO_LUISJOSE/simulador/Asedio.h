@@ -1,4 +1,4 @@
-#define VERSION 1.4
+#define VERSION 1.5
 
 // ###### Config options ################
 
@@ -11,6 +11,8 @@
 #define CUSTOM_RAND_GENERATOR 1
 
 #define FORCE_DEFENSES_AT_CELLS_CENTER 1 // defenses are moved to the center of the cells automatically
+
+//#define PEDANTIC 1 // more detailed debug information
 
 // #######################################
 
@@ -86,13 +88,14 @@
 #define _Asedio_
 
 #ifdef CUSTOM_RAND_GENERATOR
+#define RAND_TYPE long
     class SimpleRandomGenerator {
     protected:
-        static long a;
+        static RAND_TYPE a;
     public:
-        SimpleRandomGenerator(long seed = 1) { a = seed; }
+        SimpleRandomGenerator(RAND_TYPE seed = 1) { a = seed; }
 
-        static int nextValue(int lim = CUSTOM_RAND_MAX) {
+        static int nextValue(RAND_TYPE lim = CUSTOM_RAND_MAX) {
             a = (a * 32719 + 3) % 32749;
             return ((a % lim) + 1);
         }
@@ -130,13 +133,13 @@ namespace Asedio
         virtual void clearCache() {}
     };
 
-    enum Action { ACTION_NONE=0, ACTION_ATTACK };
+    enum Action { ACTION_NONE=0, ACTION_ATTACK, ACTION_HURT };
 
     typedef struct {
         float instant;
         Vector3 position;
         Action action;
-        int argument;
+        float argument;
     } Event;
 
     class RecordableObject : public DynamicObject {

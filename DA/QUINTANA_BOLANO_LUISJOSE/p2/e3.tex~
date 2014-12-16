@@ -1,0 +1,23 @@
+\begin{lstlisting}
+/*
+ * Function that returns the table of optimal solutions for each subproblem.
+ */
+std::vector<std::vector<float> > subproblemTable(std::list<Defense*> defenses, std::vector<float> values, unsigned int ases) {
+    std::vector<std::vector<float> > subTable(defenses.size(),std::vector<float>(ases+1));
+
+    std::list<Defense*>::iterator it = defenses.begin();
+    for(int j=0;j<=ases;++j)
+        subTable[0][j]=(j<(*it)->cost)? 0:values[0];
+    ++it;
+    //std::cout<<"ASES FOR DEFENSES "<<ases<<std::endl;
+    for(int i=1;i<defenses.size();++i){
+        for(int j=0;j<=ases;++j){
+            subTable[i][j]=(j<(*it)->cost)? subTable[i-1][j]
+                                                :std::max(subTable[i-1][j],subTable[i-1][j-(*it)->cost]+values[i]);
+        }
+        ++it;
+    }
+
+    return subTable;
+}
+\end{lstlisting}

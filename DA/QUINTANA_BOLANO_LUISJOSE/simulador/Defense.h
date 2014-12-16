@@ -63,13 +63,13 @@ namespace Asedio
 
         unsigned int createDefenses(unsigned int nDefenses, unsigned int nDefenseTypes, float randomness);
         
-        void placeDefenses_(STRATEGY_MODE mode);
+        void placeDefenses_(STRATEGY_MODE mode, int nCellsBorderWidth = 1, int nCellsBorderHeight = 1);
         void placeDefensesRandomly();
         
         void selectDefenses_(unsigned int ases);
 
-        bool validateDefense(Defense* defense);
-        bool validate();
+        bool validateDefense(Defense* defense, float mapInnerBorder = 0);
+        bool validate(float mapInnerBorder = 0);
 
 		// debug utils
 

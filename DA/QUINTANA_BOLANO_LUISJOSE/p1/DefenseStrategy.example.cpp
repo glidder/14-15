@@ -1,6 +1,6 @@
 // ###### Config options ################
 
-#define PRINT_DEFENSE_STRATEGY 1    // generate map images
+//#define PRINT_DEFENSE_STRATEGY 1    // generate map images
 
 // #######################################
 
@@ -14,7 +14,7 @@
 #endif
 
 #ifdef CUSTOM_RAND_GENERATOR
-long SimpleRandomGenerator::a;
+RAND_TYPE SimpleRandomGenerator::a;
 #endif
 
 using namespace Asedio;              
@@ -41,7 +41,7 @@ void DEF_LIB_EXPORTED placeDefenses(bool** freeCells, int nCellsWidth, int nCell
     for(int i = 0; i < nCellsHeight; ++i) {
        cellValues[i] = new float[nCellsWidth];
        for(int j = 0; j < nCellsWidth; ++j) {
-           cellValues[i][j] = (int)(_RAND2(255));
+           cellValues[i][j] = (int)((i+j)%256);
        }
     }
     dPrintMap("strategy.ppm", nCellsHeight, nCellsWidth, cellHeight, cellWidth, freeCells

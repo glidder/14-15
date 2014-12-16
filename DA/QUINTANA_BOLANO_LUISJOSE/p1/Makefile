@@ -7,7 +7,7 @@ LEVEL = 3324
 
 FILES_TO_PACK_P1 = ../p1/DefenseStrategy.cpp ../p1/*.tex ../p1/p1.pdf ../autor.tex ../p1/Makefile ../p1/ppm.h ../p1/.conf
 CC = g++ # C++ compiler
-CFLAGS = -fPIC -O2 # -Wall -Wextra -g 
+CFLAGS = -fPIC -O2 -ffloat-store # -Wall -Wextra -g 
 LDFLAGS = -shared # linking flags
 RM = rm -f # rm command
 TARGET_LIB = libDefenseStrategy.so # target lib

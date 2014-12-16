@@ -1,0 +1,2 @@
+$$ f(damage,attacks_second,health) = \frac{damage * attacks_second}{5} + \frac{health}{500} $$
+Para calcular el valor de cada defensa sumamos el daño por segundo que esta causa y su salud, ambos divididos por el valor considerado por defecto en Defense.h

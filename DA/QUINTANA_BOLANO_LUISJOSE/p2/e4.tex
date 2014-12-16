@@ -1,15 +1,30 @@
 \begin{lstlisting}
-// sustituya este codigo por su respuesta
-void selectDefenses(...) {
+/*
+ * Function that selects the defenses to be placed
+ */
+void DEF_LIB_EXPORTED selectDefenses(std::list<Defense*> defenses, unsigned int ases, std::list<int> &selectedIDs
+            , float mapWidth, float mapHeight, std::list<Object*> obstacles) {
+    
+    //The first element always gets selected, and then is removed from the list
+    selectedIDs.push_back(defenses.front()->id);
+    ases-=defenses.front()->cost;
+    defenses.pop_front();
+    //The table of subproblems is calculated
+    std::vector<float> values(defenses.size());
+    values=evaluateDefenses(defenses);
+    std::vector<std::vector<float> > subTable(defenses.size(),std::vector<float>(ases+1));
+    subTable=subproblemTable(defenses,values,ases);
 
-    unsigned int cost = 0;
+    //The list of objects included in the optimal solution is retrieved
     std::list<Defense*>::iterator it = defenses.begin();
-    while(it != defenses.end()) {
-        if(cost + (*it)->cost <= ases) {
+    for (int i=defenses.size()-1;i>0;--i){
+        if(subTable[i][ases]!=subTable[i-1][ases]){
             selectedIDs.push_back((*it)->id);
-            cost += (*it)->cost;
+            ases-=(*it)->cost;
         }
-        ++it;
+        ++it; 
     }
+    if(subTable[0][ases]!=0)
+        selectedIDs.push_back((*it)->id);
 }
 \end{lstlisting}

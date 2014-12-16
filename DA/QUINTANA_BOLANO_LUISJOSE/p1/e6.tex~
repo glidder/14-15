@@ -1,0 +1,22 @@
+\begin{lstlisting}
+//DEFENSES================================================================================
+	//Cell values for the position of the defensive towers are calculated
+	//A higher value represents a better position.
+	cellVal = evaluateDefenses (nCellsWidth,nCellsHeight,cellWidth,cellHeight,*currentDefense);
+
+	//The values get sorted descendingly to try and place the towers in the best positions
+	std::sort(cellVal.begin(), cellVal.end(), comparePair);
+
+	//We try every position from highest value to lowest
+	//Each tower is placed when a feasible position is find
+	currentCell = cellVal.begin();
+	while(currentCell != cellVal.end() && currentDefense != defenses.end()){
+		if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
+			(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
+        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
+        	(*currentDefense)->position.z = 0;
+        	++currentDefense;
+		}
+		++currentCell;
+	}
+\end{lstlisting}

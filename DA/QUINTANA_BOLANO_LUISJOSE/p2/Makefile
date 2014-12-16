@@ -1,4 +1,4 @@
-APELLIDO1_APELLIDO2_NOMBRE = APELLIDO1_APELLIDO2_NOMBRE
+APELLIDO1_APELLIDO2_NOMBRE = QUINTANA_BOLAÑO_LUISJOSE
 LEVEL = 3324
 
 ####################### FIN CONFIGURACION ###########################
@@ -8,7 +8,7 @@ LEVEL = 3324
 FILES_TO_PACK_P1 = ../p1/DefenseStrategy.cpp ../p1/*.tex ../p1/p1.pdf ../autor.tex ../p1/Makefile ../p1/ppm.h ../p1/.conf
 FILES_TO_PACK_P2 = ../p2/DefensesSelection.cpp ../p2/*.tex ../p2/p2.pdf ../autor.tex ../p2/Makefile ../p2/.conf
 CC = g++ # C++ compiler
-CFLAGS = -fPIC -O2 # -Wall -Wextra -g 
+CFLAGS = -fPIC -O2 -ffloat-store # -Wall -Wextra -g 
 LDFLAGS = -shared # linking flags
 RM = rm -f # rm command
 TARGET_LIB = libDefensesSelection.so # target lib

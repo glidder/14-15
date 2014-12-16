@@ -1,0 +1,62 @@
+\begin{lstlisting}
+// sustituya este codigo por su respuesta
+std::vector <std::pair <std::pair<int, int>, float> > evaluateMain (int nCellsWidth, int nCellsHeight, float cellWidth, float cellHeight, std::list<Object*> obstacles){
+
+	std::vector <std::pair <std::pair<int, int>, float> > cellVal (nCellsWidth*nCellsHeight);
+	float maxDistance = euclideanDistance(0,(nCellsWidth-1)*cellWidth,0,(nCellsHeight-1)*cellHeight);
+    float maxDistanceCenter = euclideanDistance(0,((nCellsWidth-1)*cellWidth)/2,0,((nCellsHeight-1)*cellHeight)/2);
+	
+	int i=0;
+	for (int x=0; x<nCellsWidth; ++x){
+		for (int y=0; y<nCellsHeight;++y){
+			//First values are assigned to center the turret
+			float centerValue=(maxDistanceCenter-euclideanDistance(x*cellWidth,((nCellsWidth-1)*cellWidth)/2,y*cellHeight,((nCellsHeight-1)*cellHeight)/2))/maxDistanceCenter;
+			
+			//Now a modifier is added according to the number of obstacles surrounding the position
+			//More obstacles mean a higher value
+			float obstacleValue=0;
+			for (List<Object*>::iterator currentObstacle = obstacles.begin();currentObstacle != obstacles.end();++currentObstacle){
+				float objectDistance = euclideanDistance(x*cellWidth+cellWidth*0.5f,(*currentObstacle)->position.x,y*cellHeight+cellHeight*0.5f,(*currentObstacle)->position.y);
+				obstacleValue+=((maxDistance-objectDistance)/maxDistance)/obstacles.size();
+			}
+
+			//The sum of both values is assigned to the cell
+			cellVal[i++]=std::make_pair(std::make_pair(x,y),centerValue+obstacleValue);
+		}
+	}
+
+	return cellVal;
+}
+
+void DEF_LIB_EXPORTED placeDefenses(bool** freeCells, int nCellsWidth, int nCellsHeight, float mapWidth, float mapHeight
+              , std::list<Object*> obstacles, std::list<Defense*> defenses) {
+
+	float cellWidth = mapWidth / nCellsWidth;
+    float cellHeight = mapHeight / nCellsHeight;
+    List<Defense*>::iterator currentDefense = defenses.begin();
+    std::vector <std::pair <std::pair<int, int>, float> > cellVal;
+    std::vector <std::pair <std::pair<int, int>, float> >::iterator currentCell;
+
+//MAIN TOWER==============================================================================
+    //Cell values for the position of the main tower are calculated
+	//A higher value represents a better position.
+	cellVal = evaluateMain(nCellsWidth,nCellsHeight,cellWidth,cellHeight,obstacles);
+	
+	//The values get sorted descendingly to try and place the tower in the best position
+	std::sort(cellVal.begin(), cellVal.end(), comparePair);
+	
+	//We try every position from highest value to lowest
+	//The tower is placed in the first feasible position
+	bool positioned = false;
+	currentCell = cellVal.begin();
+	while(currentCell != cellVal.end() && !positioned){
+		if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
+			(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
+        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
+        	(*currentDefense)->position.z = 0; 
+        	positioned=true;
+		} else {
+			++currentCell;
+		}
+	}
+\end{lstlisting}

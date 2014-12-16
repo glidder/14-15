@@ -1,13 +1,40 @@
 \begin{lstlisting}
-// sustituya este codigo por su respuesta
-void placeDefenses(...) {
 
-    List<Defense*>::iterator currentDefense = defenses.begin();
-    while(currentDefense != defenses.end() && maxAttemps > 0) {
+std::vector <std::pair <std::pair<int, int>, float> > evaluateDefenses (int nCellsWidth, int nCellsHeight, float cellWidth, float cellHeight, Defense* mainTower){
 
-        (*currentDefense)->position.x = ((int)(_RAND2(nCellsWidth))) * cellWidth + cellWidth * 0.5f;
-        ...
-        ++currentDefense;
-    }
+	std::vector <std::pair <std::pair<int, int>, float> > cellVal (nCellsWidth*nCellsHeight);
+	float maxDistance = euclideanDistance(0,(nCellsWidth-1)*cellWidth,0,(nCellsHeight-1)*cellHeight);
+
+	int i=0;
+	for (int x=0; x<nCellsWidth; ++x){
+		for (int y=0; y<nCellsHeight;++y){
+			//First values are assigned according to proximity to the main tower
+			cellVal[i++]=std::make_pair(std::make_pair(x,y),(maxDistance-euclideanDistance(x*cellWidth,mainTower->position.x,y*cellHeight,mainTower->position.y))/maxDistance);
+		}
+	}
+
+	return cellVal;
 }
+
+
+//DEFENSES================================================================================
+	//Cell values for the position of the defensive towers are calculated
+	//A higher value represents a better position.
+	cellVal = evaluateDefenses (nCellsWidth,nCellsHeight,cellWidth,cellHeight,*currentDefense);
+
+	//The values get sorted descendingly to try and place the towers in the best positions
+	std::sort(cellVal.begin(), cellVal.end(), comparePair);
+
+	//We try every position from highest value to lowest
+	//Each tower is placed when a feasible position is find
+	currentCell = cellVal.begin();
+	while(currentCell != cellVal.end() && currentDefense != defenses.end()){
+		if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
+			(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
+        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
+        	(*currentDefense)->position.z = 0;
+        	++currentDefense;
+		}
+		++currentCell;
+	}
 \end{lstlisting}

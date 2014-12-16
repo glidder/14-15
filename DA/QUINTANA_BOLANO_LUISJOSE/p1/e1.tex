@@ -1,4 +1,8 @@
-Escriba aquí su respuesta al ejercicio 1. 
+Para el caso del centro de extracción de minerales, la función otorga un valor a cada celda en dos partes.
+
+La primera parte consiste en un valor de 0 a 1 que describe la proximidad de la celda al centro del mapa, calculado como: $$P_{C_{x,y}}=\frac{t.mapa/2 - d.euclidea(C_{x,y},Centro)}{t.mapa/2}$$
+
+La segunda parte otorga un valor de 0 a 0.5 que es sumado al anterior, y que representa la cercanía de los obstáculos del mapa a la posición, calculada para cada obstáculo como: $$O_{C_{x,y}}=\frac{t.mapa - d.euclidea(C_{x,y},Obstaculo)}{n.obstaculos} $$
 
 % Elimine los símbolos de tanto por ciento para descomentar las siguientes instrucciones e incluir una imagen en su respuesta. La mejor ubicación de la imagen será determinada por el compilador de Latex. No tiene por qué situarse a continuación en el fichero en formato pdf resultante.
 %\begin{figure}
