@@ -179,6 +179,17 @@ values_t quickSort(values_t list){
 	}
 }
 
+/*
+ *Function that returns the highest value of the vector
+ */
+values_t::iterator highestValue(values_t list){
+	values_t::iterator current=list.begin();
+	for (values_t::iterator i=list.begin();i!=list.end();++i){
+		if(i->second() > current->second())
+			current=i;
+	}
+	return current;
+}
 /**********************************************************************************************
  **********************************************************************************************/
 /*
@@ -206,30 +217,29 @@ void DEF_LIB_EXPORTED placeDefenses3(bool** freeCells, int nCellsWidth, int nCel
     	r=0;
     	//MAIN TOWER============================================================================
     	cellVal = evaluateMain(nCellsWidth,nCellsHeight,cellWidth,cellHeight,obstacles);
-		//<<<SORT HERE>>>
-    	currentCell = cellVal.begin();
-		while(currentCell != cellVal.end() && !positioned){
+		//<<<NO SORT HERE>>>
+		while(cellVal.size()>0 && !positioned){
+			currentCell = highestValue(cellVal);
 			if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
 				(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
 	        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
 	        	(*currentDefense)->position.z = 0; 
 	        	positioned=true;
-			} else {
-				++currentCell;
-			}
+			} 
+			cellVal.erase(currentCell);
 		}
     	//DEFENSES==============================================================================
     	cellVal = evaluateDefenses (nCellsWidth,nCellsHeight,cellWidth,cellHeight,*currentDefense);
-    	//<<<SORT HERE>>>
-    	currentCell = cellVal.begin();
-		while(currentCell != cellVal.end() && currentDefense != defenses.end()){
+    	//<<<NO SORT HERE>>>
+		while(cellVal.size()>0 && currentDefense != defenses.end()){
+			currentCell = highestValue(cellVal);
 			if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
 				(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
 	        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
 	        	(*currentDefense)->position.z = 0;
 	        	++currentDefense;
 			}
-			++currentCell;
+			cellVal.erase(currentCell);
 		}
 		//======================================================================================
     	++r;
@@ -329,36 +339,41 @@ void DEF_LIB_EXPORTED placeDefenses3(bool** freeCells, int nCellsWidth, int nCel
     	r=0;
     	//MAIN TOWER============================================================================
     	cellVal = evaluateMain(nCellsWidth,nCellsHeight,cellWidth,cellHeight,obstacles);
-		//<<<SORT HERE>>>
-    	currentCell = cellVal.begin();
-		while(currentCell != cellVal.end() && !positioned){
+		std::make_heap(cellVal.begin(),cellVal.end(),comparePair);//<<<SORT HERE>>>
+		while(cellVal.size()>0 && !positioned){
+			currentCell = cellVal.front();
 			if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
 				(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
 	        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
 	        	(*currentDefense)->position.z = 0; 
 	        	positioned=true;
 			} else {
-				++currentCell;
+				pop_heap(cellVal.begin(),cellVal.end(),comparePair);
+				cellVal.pop_back();
 			}
 		}
     	//DEFENSES==============================================================================
     	cellVal = evaluateDefenses (nCellsWidth,nCellsHeight,cellWidth,cellHeight,*currentDefense);
-    	//<<<SORT HERE>>>
+    	std::make_heap(cellVal.begin(),cellVal.end(),comparePair);//<<<SORT HERE>>>
     	currentCell = cellVal.begin();
-		while(currentCell != cellVal.end() && currentDefense != defenses.end()){
+		while(cellVal.size()>0 && currentDefense != defenses.end()){
+			currentCell = cellVal.front();
 			if(feasibility(cellWidth,cellHeight,currentCell->first.first,currentCell->first.second,currentDefense,obstacles,defenses)){
 				(*currentDefense)->position.x = currentCell->first.first * cellWidth + cellWidth * 0.5f;
 	        	(*currentDefense)->position.y = currentCell->first.second * cellHeight + cellHeight * 0.5f;
 	        	(*currentDefense)->position.z = 0;
 	        	++currentDefense;
 			}
-			++currentCell;
+			pop_heap(cellVal.begin(),cellVal.end(),comparePair);
+			cellVal.pop_back();
 		}
 		//======================================================================================
     	++r;
     } while(c.tiempo()<1.0);
     c.parar();
  	float tiempo_monticulo = c.tiempo()/r;
+
+ 	std::cout << (nCellsWidth * nCellsHeight) << '\t' << tiempo_matriz << '\t' << tiempo_fusion << '\t' << tiempo_rapido << '\t' << tiempo_monticulo << std::endl;
 
 // #ifdef PRINT_DEFENSE_STRATEGY
 

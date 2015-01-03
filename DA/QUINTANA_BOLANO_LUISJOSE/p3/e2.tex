@@ -1,1 +1,35 @@
-Escriba aquí su respuesta al ejercicio 2.
+\begin{lstlisting}
+
+values_t merge(values_t l_left, values_t l_right){
+	values_t result(l_left.size()+l_right.size());
+	values_t::iterator ileft=l_left.first(),
+					   iright=l_right.first(),
+					   iresult=result.first();
+	while(ileft!=l_left.end() && iright!=l_right.end()){
+		if(ileft->second()>=iright->second()){
+			*(iresult++)=*(ileft++);
+		} else {
+			*(iresult++)=*(iright++);
+		}
+	}
+	while(ileft!=l_left.end()){
+		*(iresult++)=*(ileft++);
+	}
+	while(iright!=l_right.end()){
+		*(iresult++)=*(iright++);
+	}
+}
+
+values_t mergeSort(values_t list){
+	//Base case
+	if (list.size()<=1)
+		return list;
+	//Recursive case
+	values_t l_left(list.begin(),list.begin()+(listlist.size()/2)),
+			 l_right(list.begin()+(list.size()/2),list.end());
+	l_left=mergeSort(l_left);
+	l_right=mergeSort(l_right);
+
+	return merge(l_left,l_right);
+}
+\end{lstlisting}

@@ -1,1 +1,27 @@
-Escriba aquí su respuesta al ejercicio 3.
+\begin{lstlisting}
+
+values_t concatenate(values_t& less, values_t& equal, values_t& greater){
+	values_t result(greater.begin(), greater.end());
+	result.insert(resul.end(),equal.begin(),equal.end());
+	result.insert(result.end(),less.begin(),less.end());
+	return result;
+}
+
+values_t quickSort(values_t list){
+	values_t less,equal,greater;
+	if (list.size()>1){
+		float pivot=(list.begin()+(list.size()/2))->second();
+		for(values_t::iterator i=list.begin();i!=list.end();++i){
+			if(i->second()>pivot)
+				greater.push_back(*i);
+			else if(i->second()==pivot)
+				equal.push_back(*i);
+			else
+				less.push_back(*i);
+		}
+		return concatenate(quickSort(less),equal,quickSort(greater));
+	} else {
+		return list;
+	}
+}
+\end{lstlisting}
