@@ -1,0 +1,21 @@
+16	1	1.00001	1.00001	1
+196	1	1.00013	1.00015	1
+Error: Part of the defense 0 at (65.000000, 35.000000) is outside map bounds (map inner border = 30.000000)
+576	1.00021	1.00067	1.00003	1.00032
+Error: Part of the defense 8 at (185.000000, 265.000000) is outside map bounds (map inner border = 30.000000)
+1156	1.00208	1.00163	1.00077	1.00087
+Error: Part of the defense 0 at (365.000000, 355.000000) is outside map bounds (map inner border = 30.000000)
+1936	1.00474	1.01007	1.00313	1.00843
+Error: Part of the defense 13 at (465.000000, 405.000000) is outside map bounds (map inner border = 30.000000)
+2916	1.01678	1.02362	1.0159	1.02912
+Error: Part of the defense 0 at (565.000000, 515.000000) is outside map bounds (map inner border = 30.000000)
+2916	1.01511	1.04109	1.00347	1.00827
+Error: Part of the defense 0 at (35.000000, 565.000000) is outside map bounds (map inner border = 30.000000)
+5476	1.12132	1.05082	1.05655	1.0349
+Error: Part of the defense 5 at (705.000000, 35.000000) is outside map bounds (map inner border = 30.000000)
+7056	1.11704	1.06622	1.06981	1.04664
+Error: Part of the defense 0 at (815.000000, 35.000000) is outside map bounds (map inner border = 30.000000)
+8836	1.39314	1.35612	1.32973	1.32084
+Error: Part of the defense 6 at (965.000000, 145.000000) is outside map bounds (map inner border = 30.000000)
+10816	1.23687	1.17179	1.1745	1.1597
+Error: Part of the defense 1 at (1005.000000, 35.000000) is outside map bounds (map inner border = 30.000000)

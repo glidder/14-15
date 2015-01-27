@@ -1,0 +1,24 @@
+/**
+*
+*/
+function getHello(){
+	$.ajax({
+		type: "GET",
+		url: "http://localhost:8080/TutorialREST/demo/hello",
+		success: function(data){
+			$("#resGetHello").html(data); },
+		error:function(res){
+			alert("ERROR: "+ res.statusText); }
+});
+}
+function getHelloId(myId){
+	var myUrl = "http://localhost:8080/TutorialREST/demo/hello/helloId/"+myId;
+	$.ajax({
+		type:"GET",
+		url: myUrl,
+		success: function(data){
+			$("#resGetHello").html(data);},
+		error:function(res){
+			alert("ERROR "+res.statusText);}
+	});
+}

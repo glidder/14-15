@@ -14,9 +14,22 @@ then
     suffix=64
 fi
 
-if [ "$simversion" = "1.5" ]
+if [ "$simversion" = "1.6" ]
 then
     echo "Nothing to update"
+elif [ "$simversion" = "1.5" ]
+then
+    echo "Updating to 1.6..."
+    rm update.tar.gz*
+    if [ "$soversion" = "64" ]
+    then
+        wget -O update.tar.gz https://nube.uca.es/public.php?service=files\&t=18f0f3f30244d466e4bab7dffc9a0487\&download && echo a > .version
+    else
+        wget -O update.tar.gz https://nube.uca.es/public.php?service=files\&t=039b397a957613c01deaadc6ccfe2da4\&download && echo a > .version
+    fi
+    tar -xzf update.tar.gz --directory ..
+    rm update.tar.gz*
+    echo "Updated to 1.6"
 elif [ "$simversion" = "1.4" ]
 then
     echo "Updating to 1.5..."

@@ -24,7 +24,7 @@ bool is_sorted (values_t::iterator first, values_t::iterator last)
 	while( next_permutation(cellVal.begin(),cellVal.end(),comparePair)){
 		values_t copiacellVal=mergeSort(cellVal);
 		if(!is_sorted(copiacellVal.begin(),copiacellVal.end())){
-			std::cout<< "ERROR EN LA ORDENACION POR FUSION" <<std::endl;
+			std::cout<< "ERROR EN LA ORDENACION POR FUSION <<std::endl;
 		}
 	}
 	std::sort(cellVal.begin(),cellVal.end(),comparePair);

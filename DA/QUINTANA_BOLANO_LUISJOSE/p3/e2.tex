@@ -2,34 +2,42 @@
 
 values_t merge(values_t l_left, values_t l_right){
 	values_t result(l_left.size()+l_right.size());
-	values_t::iterator ileft=l_left.first(),
-					   iright=l_right.first(),
-					   iresult=result.first();
+	values_t::iterator ileft=l_left.begin(),
+					   iright=l_right.begin(),
+					   iresult=result.begin();
 	while(ileft!=l_left.end() && iright!=l_right.end()){
-		if(ileft->second()>=iright->second()){
-			*(iresult++)=*(ileft++);
+		if(ileft->second>=iright->second){
+			*iresult=*ileft;
+			++ileft;
 		} else {
-			*(iresult++)=*(iright++);
+			*iresult=*iright;
+			++iright;
 		}
+		++iresult;
 	}
 	while(ileft!=l_left.end()){
-		*(iresult++)=*(ileft++);
+		*iresult=*ileft;
+		++iresult;++ileft;
 	}
 	while(iright!=l_right.end()){
-		*(iresult++)=*(iright++);
+		*iresult=*iright;
+		++iresult;++iright;
 	}
+	return result;
 }
 
 values_t mergeSort(values_t list){
 	//Base case
-	if (list.size()<=1)
+	if (list.size()<=1){
 		return list;
+	} else {
 	//Recursive case
-	values_t l_left(list.begin(),list.begin()+(listlist.size()/2)),
-			 l_right(list.begin()+(list.size()/2),list.end());
-	l_left=mergeSort(l_left);
-	l_right=mergeSort(l_right);
+		values_t l_left(list.begin(),list.begin()+(list.size()/2)),
+				 l_right(list.begin()+(list.size()/2),list.end());
+		values_t fl_left=mergeSort(l_left);
+		values_t fl_right=mergeSort(l_right);
 
-	return merge(l_left,l_right);
+		return merge(fl_left,fl_right);
+	}
 }
 \end{lstlisting}

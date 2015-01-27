@@ -1,7 +1,7 @@
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[scale=.7]{graphic.eps}
+\includegraphics[scale=.7]{nfa.eps}
 \caption{Gráfica de tiempos.}
 \label{fig:grafica}
 \end{figure}

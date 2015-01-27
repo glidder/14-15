@@ -2,6 +2,4 @@ Tomando un tablero de $n$ casillas y $m$ defensas:
 
 Para el caso sin preodenación, se realizarán en el peor caso (si ninguna posición es factible para alguna de las torres) $\displaystyle\sum_{i=0}^{n} n-i$, ya que tras cada acceso se elimina de la estructura que contiene las casillas el elemento comprobado. Por tanto el algoritmo es de orden $O(n^{2}/2$ en el peor caso y $O(n)$ en el mejor.
 
-Tanto en el caso preordenado por fusión como en ordenacióin rápida y por montículo, el algoritmo es de orden $O(n \log n)$ en el mejor caso, siendo $O(n^2)$ el peor caso para quicksort (en muy raras ocasiones).
-
-Con estos datos, los resultados esperados son que todos, exceptuando quizá el caso sin preordenación, estarán muy igualados.
+Tanto en el caso preordenado por fusión como en ordenacióin rápida y por montículo, el algoritmo es de orden $O(n \log n)$ en el mejor caso, siendo $O(n^2)$ el peor caso para quicksort.

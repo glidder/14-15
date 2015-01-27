@@ -1,6 +1,6 @@
 // ###### Config options ################
 
-#define PRINT_DEFENSE_STRATEGY 1    // generate map images
+//#define PRINT_DEFENSE_STRATEGY 1    // generate map images
 
 // #######################################
 
